@@ -112,6 +112,7 @@ Copyright (c) 2013-2015 Bitcoin Developers
 
 Contributers
 ---------
-Matthew Tawil
-Vijay Dogra
+Firdavs (@spawn7777)
+Max Werner (@NotAWiz4rd)
+Joel (@ABU7NAKHT)
 
