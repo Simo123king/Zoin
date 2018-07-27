@@ -3,12 +3,12 @@ AC_PREREQ([2.60])
 define(_CLIENT_VERSION_MAJOR, 0)
 define(_CLIENT_VERSION_MINOR, 13)
 define(_CLIENT_VERSION_REVISION, 1)
-define(_CLIENT_VERSION_BUILD, 6)
+define(_CLIENT_VERSION_BUILD, 7)
 define(_CLIENT_VERSION_IS_RELEASE, true)
 define(_COPYRIGHT_YEAR, 2018)
 define(_COPYRIGHT_HOLDERS,[The %s developers])
 define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[Zoin Core]])
-AC_INIT([Zoin Core],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[https://github.com/zoinofficial/zoin/issues],[zoin],[https://zoinofficial.com/])
+AC_INIT([Zoin Core],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[https://github.com/zoinofficial/zoin/issues],[zoin],[https://zoinofficial.io/])
 AC_CONFIG_SRCDIR([src/main.cpp])
 AC_CONFIG_HEADERS([src/config/bitcoin-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
@@ -110,6 +110,13 @@ AC_ARG_ENABLE([upnp-default],
   [use_upnp_default=$enableval],
   [use_upnp_default=no])
 
+zusetests=no
+case $host in
+  *linux*)
+     zusetests=yes
+  ;;
+esac
+
 AC_ARG_ENABLE(tests,
     AS_HELP_STRING([--disable-tests],[do not compile tests (default is to compile)]),
     [use_tests=$enableval],
@@ -196,6 +203,9 @@ AC_ARG_ENABLE([debug],
                     [use debug compiler flags and macros (default is no)])],
     [enable_debug=$enableval],
     [enable_debug=no])
+
+AC_ARG_ENABLE(seccomp,
+AS_HELP_STRING(--disable-seccomp, [do not attempt to use libseccomp]))
 
 AC_LANG_PUSH([C++])
 AX_CHECK_COMPILE_FLAG([-Werror],[CXXFLAG_WERROR="-Werror"],[CXXFLAG_WERROR=""])
@@ -887,6 +897,20 @@ if test x$need_bundled_univalue = xyes ; then
 fi
 
 fi
+
+dnl ============================================================
+dnl Check for libseccomp
+
+if test "x$enable_seccomp" != "xno"; then
+  AC_CHECK_HEADERS([seccomp.h])
+  AC_SEARCH_LIBS(seccomp_init, [seccomp])
+fi
+
+dnl ============================================================
+dnl Check for libcap
+
+AC_CHECK_HEADERS([sys/capability.h])
+AC_SEARCH_LIBS(cap_get_proc, [cap])
 
 ac_configure_args="${ac_configure_args} --disable-shared"
 
