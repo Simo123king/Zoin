@@ -41,7 +41,7 @@ match the project's coding conventions (see `doc/coding.txt`) or are
 controversial.
 
 The `master` branch is regularly built and tested, but is not guaranteed to be
-completely stable. [Tags](https://github.com/zoinofficial/zoincore/tags) are created
+completely stable. [Tags](https://github.com/zoinofficial/zoin/tags) are created
 regularly to indicate new official, stable release versions of Zoin.
 
 
@@ -75,7 +75,7 @@ Build
 ----------------------
 1.  Clone the source:
 
-        git clone https://github.com/zoinofficial/zoincore
+        git clone https://github.com/zoinofficial/zoin
 
 2.  Build Zoin-core:
 
