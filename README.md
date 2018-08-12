@@ -33,7 +33,7 @@ development team members simply pulls it.
 
 If it is a *more complicated or potentially controversial* change, then the patch
 submitter will be asked to start a discussion (if they haven't already) on the
-[Discord](https://discord.gg/VfTQHNf).
+[Discord](https://discord.gg/VfTQHNf) or [Slack](https://join.slack.com/t/zoinofficial/shared_invite/enQtNDE1MDAyMjI4OTE2LTZiOTk1NTUwMjhjNTMzNDBmODA0NWE0ZDU0MDExNzExNDQ3MGRlMzIxYTMwNTkzY2VlNTI2MGM5YWQ5Y2Y4ZmI).
 
 The patch will be accepted if there is broad consensus that it is a good thing.
 Developers should expect to rework and resubmit patches if the code doesn't
